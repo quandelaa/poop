@@ -14,4 +14,4 @@ dependencies = [
 ]
 
 [project.scripts]
-organize = "main:main"
+poop = "main:main"

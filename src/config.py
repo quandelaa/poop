@@ -1,3 +1,19 @@
+TERMS = {
+    "img": "image",
+    "vid": "video",
+    "audio": "audio",
+    "doc": "document",
+    "sheet": "spreadsheet",
+    "zip": "archive",
+    "exe": "executable",
+    "ebook": "ebook",
+    "font": "font",
+    "sub": "subtitle",
+    "3d": "3d",
+    "map": "map",
+    "all": "all"
+}
+
 EXTENSIONS = {
     # video
     ".mp4":     "video",
@@ -135,32 +151,64 @@ EXTENSIONS = {
 }
 
 COLORS = {
-    "header":      "bold white",
-    "subheader":   "grey84",
-    "text":        "grey66",
-    "index":       "grey42",
-    "prompt":      "white",
-    "success":     "bold white",
-    "error":       "bold white",
-    "muted":       "grey30",
+    "header":    "bold #d5d9d5",   
+    "subheader": "#b8b8ae",       
+    "text":      "#c5c9c5",      
+    "index":     "#9e9b93",  
+    "prompt":    "#a3bec8", 
+    "success":   "#9ec49e",
+    "error":     "#d4867e",
+    "muted":     "#8a9389",
+}
+ 
+EXT_COLORS = {
+    "video":        "#8ba4b0",
+    "audio":        "#949fb5",
+    "image":        "#c4b28a",
+    "document":     "#c5c9c5",
+    "spreadsheet":  "#87a987",
+    "archive":      "#b6927b",
+    "executable":   "#c4746e",
+    "script":       "#8a9a7b",
+    "ebook":        "#8992a7",
+    "font":         "#a6a69c",
+    "subtitle":     "#7a8382",
+    "3d":           "#8ea4a2",
+    "disk_image":   "#a292a3",
+    "map":          "#87a987",
+    "presentation": "#c4b28a",
+    "custom":       "#949fb5",
+    "misc":         "#737c73",
+    "all":          "bold white",
 }
 
-EXT_COLORS = {
-    "video":        "grey84",
-    "audio":        "grey84",
-    "image":        "grey84",
-    "document":     "grey84",
-    "spreadsheet":  "grey84",
-    "archive":      "grey84",
-    "executable":   "grey84",
-    "script":       "grey84",
-    "ebook":        "grey84",
-    "font":         "grey84",
-    "subtitle":     "grey66",
-    "3d":           "grey84",
-    "disk_image":   "grey84",
-    "map":          "grey84",
-    "presentation": "grey84",
-    "custom":       "grey84",
-    "misc":         "grey42",
-}
+# COLORS = {
+#     "header":      "bold white",
+#     "subheader":   "grey84",
+#     "text":        "grey66",
+#     "index":       "grey42",
+#     "prompt":      "light_sky_blue1",
+#     "success":     "bold white",
+#     "error":       "bold red1",
+#     "muted":       "grey30",
+# }
+#
+# EXT_COLORS = {
+#     "video":        "grey84",
+#     "audio":        "grey84",
+#     "image":        "grey84",
+#     "document":     "grey84",
+#     "spreadsheet":  "grey84",
+#     "archive":      "grey84",
+#     "executable":   "grey84",
+#     "script":       "grey84",
+#     "ebook":        "grey84",
+#     "font":         "grey84",
+#     "subtitle":     "grey66",
+#     "3d":           "grey84",
+#     "disk_image":   "grey84",
+#     "map":          "grey84",
+#     "presentation": "grey84",
+#     "custom":       "grey84",
+#     "misc":         "grey42",
+# }
