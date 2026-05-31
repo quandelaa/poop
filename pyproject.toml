@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project]
+name = "file-organizer"
+version = "1.0.0"
+requires-python = ">=3.10"
+dependencies = [
+"rich"
+]
+
+[project.scripts]
+organize = "main:main"
