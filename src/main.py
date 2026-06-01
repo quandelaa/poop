@@ -1,15 +1,13 @@
-from pydoc import text
 from parse import parse
+from organizer import Organizer 
 from pathlib import Path
-from config import EXTENSIONS, EXT_COLORS, COLORS, TERMS
-from rich.console import Console  # pyright: ignore[reportMissingImports]
-from rich.panel import Panel
+from config import LEGAL_ARGS, EXTENSIONS, EXT_COLORS, COLORS, TERMS
+from rich.console import Console
 from rich.layout import Layout
 
 class Files:
     def __init__(self, path) -> None:
-        self.files = [f for f in path.iterdir() if f.is_file()]
-        self.path = str(path)
+        self.console = Console()
 
         self.index_color = COLORS["index"]
         self.header_color = COLORS["header"]
@@ -19,25 +17,49 @@ class Files:
         self.success_color = COLORS["success"]
         self.text_color = COLORS["text"]
         self.prompt_color = COLORS["prompt"] 
+
+        self.startup_error = None
+
+        try:
+            self.files = [f for f in path.iterdir() if f.is_file()]
+        except PermissionError as e:
+            self.startup_error = e
+
+        self.path = str(path)
         
-    def question(self, console, args):
+    def question(self, args):
         options = dict()
+
+        self.console.print(f"do [bold {self.prompt_color}]'poop -h'[/] for more help\n")
 
         for arg in args:
             term = TERMS.get(arg)
-            
+
             if not term:
+                continue
+
+            if term not in LEGAL_ARGS:
                 continue
 
             color = EXT_COLORS.get(term)
 
-            while options.get(term) != "y" and options.get(term) != "":
-                options[term] = console.input(f"[{self.text_color}]organize [{color}]{term}[/] files in a seperate directory (y for yes, blank for no): ").lower()
+            while options.get(term) not in (False, True):
+                e = "directory" if term != "all" else "directories"
+                answer = self.console.input(f"organize [bold {color}]{term}[/] files in to their respective {e} (y for yes, blank for no): ").lower() 
 
-        console.print()
+                options[term] = False if answer == "" else True if answer == "y" else answer
 
-    def display(self, console):
-        console.print(f"directory: [bold {self.subheader_color}]{self.path}\n")
+                if term == "all" and options[term]:
+                    return options #gonna js return a dictionary with all flags: true
+
+        if all(value == False for value in options.values()):
+            self.console.print(f"\n[bold {self.error_color}]why didn't you pick anything?", end="")
+            return
+
+        return options
+
+    def display(self) -> None:
+        self.console.print(f"\ndirectory: [bold {self.subheader_color}]{self.path}\n")
 
         for i, file in enumerate(self.files):
             file_name = file.stem
@@ -46,7 +68,7 @@ class Files:
             category = EXTENSIONS.get(file_ext, "misc")
             color = EXT_COLORS.get(category)
 
-            console.print(f"[{self.index_color}]{i+1}.[/] [{self.text_color}]{file_name}[/][{color}]{file_ext}[/]")
+            self.console.print(f"[{self.index_color}]{i+1}.[/] [{self.text_color}]{file_name}[/][bold {color}]{file_ext}")
 
 def setup(console):
     args = parse()
@@ -58,7 +80,7 @@ def setup(console):
 
     if not path.is_dir():
         while not path.is_dir():
-            console.print(f"[{COLORS.get("error")}]{path}[/], is not a path to a directory")
+            console.print(f"[{COLORS.get('error')}]{path}[/], is not a path to a directory")
             path = Path(console.input(f"[{COLORS.get("prompt")}]?[/] path to folder: ").strip()).resolve()
 
     args_ = {arg: val for arg, val in vars(args).items() if arg != "path"}
@@ -71,7 +93,26 @@ def main():
 
     file_store = Files(path)
 
-    if sum(1 for value in args.values() if value == False or value == None) == 14:
-        file_store.question(console, list(args))
+    if file_store.startup_error is not None:
+        return file_store.startup_error
 
-    file_store.display(console)
+    if sum(1 for value in args.values() if value == False or value == None) == 14:
+        options = file_store.question(list(args))
+        
+        if options is None:
+            return
+    else:
+        options = args
+    
+    print(options)
+    organizer = Organizer(options, file_store.path)
+
+    organizer.mkdirs()
+
+    file_store.display()
+
+
+
+
+
+
