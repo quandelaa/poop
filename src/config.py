@@ -1,3 +1,5 @@
+LEGAL_ARGS = ["all", "video", "audio", "image", "document", "spreadsheet"]
+
 TERMS = {
     "img": "image",
     "vid": "video",
@@ -9,7 +11,7 @@ TERMS = {
     "ebook": "ebook",
     "font": "font",
     "sub": "subtitle",
-    "3d": "3d",
+    "3d": "3d model",
     "map": "map",
     "all": "all"
 }
