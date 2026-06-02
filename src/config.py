@@ -1,21 +1,5 @@
 LEGAL_ARGS = ["all", "video", "audio", "image", "document", "spreadsheet"]
 
-TERMS = {
-    "img": "image",
-    "vid": "video",
-    "audio": "audio",
-    "doc": "document",
-    "sheet": "spreadsheet",
-    "zip": "archive",
-    "exe": "executable",
-    "ebook": "ebook",
-    "font": "font",
-    "sub": "subtitle",
-    "3d": "3d model",
-    "map": "map",
-    "all": "all"
-}
-
 EXTENSIONS = {
     # video
     ".mp4":     "video",
