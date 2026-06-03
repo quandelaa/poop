@@ -1,5 +1,5 @@
 from pathlib import Path
-from .config import COLORS, EXT_COLORS 
+from .config import COLORS, EXT_COLORS, EXTENSIONS 
 from rich.console import Console
 
 class Organizer:
@@ -8,28 +8,26 @@ class Organizer:
         self.console = Console()
 
         self.path = Path(path)
-        self.files = files.copy() 
-  
+        self.files = files.copy()
+        
+        self.dirs = dict()
+        
         self.prompt_color = COLORS.get("prompt")
 
-    def directory_paths(self):
-        dir_paths = {}
+    def make_dirs(self):
         specs = self.options.get("spec")
         
         if specs is not None:
-            name = self.console.input(f"name of the new directory to store [bold {self.prompt_color}]{", ".join(specs)}[/] files: ")
-            if name.isspace() or name == "":
-                name = "directory_made_by_poop"
-
-            dir_paths["spec"] = self.path.joinpath(name)
-            return dir_paths
+            self.dirs["spec"] = self.path.joinpath(specs["name"])
+            return
 
         name_choice = None
-        while name_choice not in (False, True):
-            name_choice = self.console.input(f"name new directories after their own respective category name (y/N): ")
-            name_choice = True if name_choice == "y" else False if name_choice == "" else name_choice
+        if all(val is True for val in self.options.values()):
+            while name_choice not in (False, True):
+                name_choice = self.console.input(f"name new directories after their own respective category name (y/N): ")
+                name_choice = True if name_choice == "y" else False if name_choice == "" else name_choice
 
-        if not name_choice:
+        if name_choice is True:
             print()
 
         for opt in self.options:
@@ -41,13 +39,20 @@ class Organizer:
                     name = self.console.input(f"name of the new directory to store [bold {color}]{opt.replace("_", " ")}[/] files: ").replace(" ", "_")
                 
                     if name.isspace() or name == "":
-                        name = opt
+                        name = f"{opt}s"
                 else:
                     name = f"{opt}s"
 
-                dir_paths[opt] = (self.path.joinpath(name))
+                self.dirs[opt] = self.path.joinpath(name)
+            else:
+                self.dirs[opt] = self.path.joinpath(str(val))
 
-        return dir_paths
+    def organize(self):
+        for file in self.files:
+            ext = Path(file).suffix
 
-    def mkdirs(self):
-        pass
+            print(file)
+            print(EXTENSIONS.get(ext.lower(), "misc"))
+            
+
+
