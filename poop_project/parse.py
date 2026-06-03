@@ -18,7 +18,10 @@ def parse():
     parser.add_argument("--font", help="organize supported font files into a directory named DIR in PATH", metavar="DIR")
     parser.add_argument("--subtitle", help="organize supported image files into a directory named DIR in PATH", metavar="DIR")
     parser.add_argument("--3d", help="organize supported 3d model files into a directory named DIR in PATH", metavar="DIR")
-    parser.add_argument("--map", help="organize supported map files into a directory named DIR in PATH", metavar="DIR") 
+    parser.add_argument("--discimg", help="organize supported disk image files into a directory named DIR in PATH", metavar="DIR") 
+    parser.add_argument("--code", help="organize supported code files into a directory named DIR in PATH", metavar="DIR") 
+    parser.add_argument("--backup", help="organize supported backup files into a directory named DIR in PATH", metavar="DIR") 
+    parser.add_argument("--data", help="organize supported data files into a directory named DIR in PATH", metavar="DIR") 
 
     args = parser.parse_args()
 
