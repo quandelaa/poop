@@ -2,16 +2,13 @@
 requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
 [project]
 name = "file-organizer"
-version = "1.0.0"
+version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
 "rich"
 ]
 
 [project.scripts]
-poop = "main:main"
+poop = "poop_project.main:main"
