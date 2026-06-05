@@ -241,33 +241,37 @@ LEGAL_ARGS = set(EXTENSIONS.values())
 LEGAL_ARGS.add("all")
 
 COLORS = {
-    "header":    "bold #d5d9d5",   
-    "subheader": "#b8b8ae",       
-    "text":      "#c5c9c5",      
-    "index":     "#9e9b93",  
-    "prompt":    "#a3bec8", 
-    "success":   "#9ec49e",
-    "error":     "#d4867e",
-    "muted":     "#8a9389",
+    "header":    "bold #c8cdc8",
+    "subheader": "#a6a89e",
+    "text":      "#b8bcb8",
+    "index":     "#8e8c84",
+    "prompt":    "#90b0c0",
+    "success":   "#88b090",
+    "error":     "#c47870",
+    "muted":     "#7a8478",
 }
  
 EXT_COLORS = {
-    "video":        "#8ba4b0",
-    "audio":        "#949fb5",
-    "image":        "#c4b28a",
-    "document":     "#c5c9c5",
-    "spreadsheet":  "#87a987",
-    "archive":      "#b6927b",
-    "executable":   "#c4746e",
-    "ebook":        "#8992a7",
-    "font":         "#a6a69c",
-    "subtitle":     "#7a8382",
-    "3d":           "#8ea4a2",
-    "disk_image":   "#a292a3",
-    "presentation": "#c4b28a",
-    "misc":         "#737c73",
-    "all":          "bold white",
-    "code":         "#4a5752",
-    "data":         "#a66e5b",
-    "backup":       "#e3dec3",
+    "video":        "#7a9bb5",
+    "audio":        "#9891b8",
+    "image":        "#b8a97a",
+
+    "document":     "#a8aca8",
+    "spreadsheet":  "#7a9e82",
+    "ebook":        "#9e8ea8",
+    "presentation": "#b0976a",
+    "font":         "#a09880",
+
+    "archive":      "#a07b6a",
+    "disk_image":   "#9484a8",
+    "backup":       "#8fa898",
+
+    "code":         "#6e8fa8",
+    "data":         "#a8826a",
+    "subtitle":     "#7a9490",
+
+    "executable":   "#b87a72",
+    "3d":           "#7aa8a4",
+    "misc":         "#6e7870",
+    "all":          "bold white",    
 }
