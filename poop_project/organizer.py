@@ -1,6 +1,4 @@
 from pathlib import Path
-from sys import exception
-from types import new_class
 from .config import COLORS, EXT_COLORS, EXTENSIONS 
 from rich.console import Console
 
