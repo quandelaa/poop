@@ -1,4 +1,5 @@
 from pathlib import Path
+import shutil
 
 from .config import LEGAL_ARGS, EXTENSIONS, EXT_COLORS, COLORS
 
@@ -52,7 +53,7 @@ class Files:
                     f"[{self.prompt_color}]>[/] [{self.muted_color}]organize[/] "
                     f"[bold {color}]{arg}[/] "
                     f"[{self.muted_color}]files into their respective {e} (y/N):[/] "
-                ).lower()
+                ).strip().lower()
 
                 options[arg] = False if answer == "" or answer == "n" else True if answer == "y" else answer
 
@@ -68,7 +69,8 @@ class Files:
         return options
 
     def display(self, preview) -> None:
-        self.console.print(f"\n[{self.muted_color}]directory:[/] [{self.header_color}]{self.path}\n")
+        header = f"\n[{self.muted_color}]| directory:[/] [{self.header_color}]{self.path}\n"
+        self.console.print(Padding.indent(header, 2))
 
         for i, file in enumerate(preview):
             is_dir = isinstance(file, list)
@@ -76,7 +78,7 @@ class Files:
                 sub_files = file[1]
                 file = file[0]
             else:
-                sub_files = [] # needed for pleasing pyright
+                sub_files = [] # needed to please pyright
                 
             file_name = file.stem
             file_ext = file.suffix
@@ -89,7 +91,7 @@ class Files:
                             f"[{self.text_color}]{file_name}[/]"
                             f"[{color}]{file_ext}[/]", style=self.index_color, guide_style=self.index_color)
 
-                for j, sub_file in enumerate(sub_files):
+                for sub_file in sub_files:
                     sub_file_name = sub_file.stem
                     sub_file_ext = sub_file.suffix
 
@@ -100,7 +102,8 @@ class Files:
                             f"[{self.text_color}]{sub_file_name}[/]"
                             f"[{sub_color}]{sub_file_ext}[/]")
 
-                self.console.print(Padding.indent(dir_tree, 1))
+                indent_value = 0 if i+1 > 99 else 1 if i+1 > 9 else 2
+                self.console.print(Padding.indent(dir_tree, indent_value))
                 continue
 
             self.console.print(
@@ -120,3 +123,15 @@ class Files:
 
         return types
 
+    def move_files (self, files):
+        for item in files: 
+            if isinstance(item, list):
+                item[0].mkdir(exist_ok=True)
+
+                for sub_item in self.files:
+                    if sub_item in item[1]:
+                        dst = item[0].joinpath(sub_item.name)
+                        try:
+                            shutil.move(str(sub_item), str(dst))
+                        except FileNotFoundError:
+                            continue
