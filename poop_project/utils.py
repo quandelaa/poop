@@ -1,4 +1,5 @@
 from pathlib import Path
+import shutil
 
 from .parse import parse
 from .config import EXTENSIONS, COLORS
@@ -37,7 +38,7 @@ class Utility():
                 console.print(
                     f"[{COLORS.get('error')}]![/] "
                     f"[{COLORS.get('text')}]{path}[/] "
-                    f"[{COLORS.get('error')}]is not a valid directory\n[/]"
+                    f"[{COLORS.get('error')}]is not a valid directory[/]"
                 )
 
                 raw_path = console.input(
@@ -45,7 +46,8 @@ class Utility():
                 ).strip()
                 
                 path = Path(raw_path).resolve()
-        
+                console.print()
+
         return path, args_
 
     @classmethod
@@ -56,3 +58,17 @@ class Utility():
             options = args
 
         return options
+
+    @classmethod
+    def acceptance(cls, console):
+        accept = None
+
+        console.print()
+        while accept is not False and accept is not True:
+            accept = console.input(
+                    f"[{COLORS.get('prompt')}]>[/] [{COLORS.get('muted')}]would you like to accept the changes (y/N to abort): [/] "
+            ).strip().lower()
+
+            accept = True if accept == "y" else False if accept == "n" or accept.isspace() or accept == "" else accept
+
+        return accept
