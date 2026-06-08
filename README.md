@@ -4,11 +4,11 @@ poop is a Python CLI tool to organize your messy files.
 
 ## installation
   
-since this project is currently still under development and not yet available on PyPI, you can install it locally from the source.
+you can install it locally from the source.
 
 1. clone the repository and `cd` into the directory:
 ```bash
-git clone [https://github.com/quandelaa/poop.git](https://github.com/quandelaa/poop.git)
+git clone https://github.com/quandelaa/poop.git
 cd poop/
 ```
 
@@ -16,6 +16,15 @@ cd poop/
 ```bash
 uv pip install .
 ```
+
+OR:
+
+1. install via github repository:
+```bash
+uv pip install git+https://github.com/quandelaa/poop.git
+```
+
+2. and you are set to go..
 
 ## usage
 
@@ -25,7 +34,8 @@ uv pip install .
 
 ## features
 
-- free ROBUX
+- not vibecoded
+- works
 
 ## license
 
@@ -34,4 +44,4 @@ this project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 * my very first real project
-* all by quandela
+* 100% by quandela
