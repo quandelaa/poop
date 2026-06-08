@@ -23,4 +23,6 @@ def main():
     new_files = organizer.organize()
     file_handler.display(new_files) 
     
-    
+    is_accept = Utility.acceptance(console)
+    if is_accept:
+        file_handler.move_files(new_files)
