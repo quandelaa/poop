@@ -35,7 +35,7 @@ uv pip install git+https://github.com/quandelaa/poop.git
 ## features
 
 - not vibecoded
-- works
+- works (i think)
 
 ## license
 
