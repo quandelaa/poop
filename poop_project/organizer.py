@@ -28,7 +28,7 @@ class Organizer:
                 name_choice = self.console.input(
                     f"[{self.prompt_color}]>[/] "
                     f"[{self.muted_color}]name directories after their category (y/N):[/] "
-                )
+                ).strip().lower()
 
                 name_choice = True if name_choice == "y" else False if name_choice == "" or name_choice == "n" else name_choice
 
@@ -47,11 +47,11 @@ class Organizer:
                             f"[{self.muted_color}]directory name for[/] "
                             f"[bold {color}]{opt.replace('_', ' ')}[/] "
                             f"[{self.muted_color}]files:[/] "
-                        ).replace(" ", "_")
+                        ).strip().replace(" ", "_")
                     
                         has_same = self.path.joinpath(name) in self.dirs.values()
 
-                    if name.isspace() or name == "":
+                    if name == "":
                         name = f"{opt}s"
                 else:
                     name = f"{opt}s"
