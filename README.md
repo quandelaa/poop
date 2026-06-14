@@ -33,6 +33,7 @@ uv pip install git+https://github.com/quandelaa/poop.git
 ```
 
 ## demo
+(interactive mode, no flags specified)
 <div>
     <img src="assets/demo.gif" alt="poop demo">
 </div>
