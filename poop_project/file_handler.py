@@ -38,7 +38,7 @@ class Files:
         options = dict()
 
         self.console.print(f"[{self.muted_color}]----------------------------------------------------")
-        self.console.print(f"[{self.muted_color}]run [{self.subheader_color}]'poop -h'[/] for usage[/]\n")
+        self.console.print(f"[{self.muted_color}]run '[bold {self.subheader_color}]poop -h[/]'for usage[/]\n")
 
         for arg in args:
             if arg not in LEGAL_ARGS:
@@ -50,9 +50,9 @@ class Files:
                 e = "directory" if arg != "all" else "directories"
 
                 answer = self.console.input(
-                    f"[{self.prompt_color}]>[/] [{self.muted_color}]organize[/] "
+                    f"[bold {self.prompt_color}]?[/] [{self.muted_color}]organize[/] "
                     f"[bold {color}]{arg}[/] "
-                    f"[{self.muted_color}]files into their respective {e} (y/N):[/] "
+                    f"[{self.muted_color}]files into their respective {e} [bold](y/N): "
                 ).strip().lower()
 
                 options[arg] = False if answer == "" or answer == "n" else True if answer == "y" else answer
@@ -62,14 +62,14 @@ class Files:
                     return {opt: True for opt in EXTENSIONS.values()} 
         
         if all(value == False for value in options.values()):
-            self.console.print(f"\n[{self.muted_color}]why don't you want to organize anything? -- exiting[/]", end="")
+            self.console.print(f"\n[bold {self.muted_color}]why don't you want to organize anything? - [bold {self.error_color}]exiting[/]")
             return
  
         self.console.print()
         return options
 
     def display(self, preview) -> None:
-        header = f"\n[{self.muted_color}]| directory:[/] [{self.header_color}]{self.path}\n"
+        header = f"\n[{self.muted_color}]| directory:[/] [bold {self.header_color}]{self.path}\n"
         self.console.print(Padding.indent(header, 2))
 
         for i, file in enumerate(preview):
@@ -87,8 +87,8 @@ class Files:
             color = EXT_COLORS.get(category)
 
             if is_dir:
-                dir_tree = Tree(f"[{self.index_color}]{i+1}[/][{self.muted_color}].[/] "
-                            f"[{self.text_color}]{file_name}[/]"
+                dir_tree = Tree(f"[bold {self.index_color}]{i+1}[/][{self.muted_color}].[/] "
+                            f"[bold {self.text_color}]{file_name}[/]"
                             f"[{color}]{file_ext}[/]", style=self.index_color, guide_style=self.index_color)
 
                 for sub_file in sub_files:
@@ -98,18 +98,18 @@ class Files:
                     sub_category = EXTENSIONS.get(sub_file_ext.lower(), "misc")
                     sub_color = EXT_COLORS.get(sub_category)
 
-                    dir_tree.add(f"[{self.index_color}]{''}[/][{self.muted_color}].[/] "
+                    dir_tree.add(f"[bold {self.index_color}]{''}[/][{self.muted_color}].[/] "
                             f"[{self.text_color}]{sub_file_name}[/]"
-                            f"[{sub_color}]{sub_file_ext}[/]")
+                            f"[bold {sub_color}]{sub_file_ext}[/]")
 
                 indent_value = 0 if i+1 > 99 else 1 if i+1 > 9 else 2
                 self.console.print(Padding.indent(dir_tree, indent_value))
                 continue
 
             self.console.print(
-                f"[{self.index_color}]{i+1:>3}[/][{self.muted_color}].[/] "
+                f"[bold {self.index_color}]{i+1:>3}[/][{self.muted_color}].[/] "
                 f"[{self.text_color}]{file_name}[/]"
-                f"[{color}]{file_ext}[/]"
+                f"[bold {color}]{file_ext}[/]"
             )
 
     def types_in_dir(self):

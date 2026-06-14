@@ -26,8 +26,8 @@ class Organizer:
         if all(val is True for val in self.options.values()):
             while name_choice not in (False, True):
                 name_choice = self.console.input(
-                    f"[{self.prompt_color}]>[/] "
-                    f"[{self.muted_color}]name directories after their category (y/N):[/] "
+                    f"[bold {self.prompt_color}]?[/] "
+                    f"[{self.muted_color}]name directories after their category [bold](y/N): "
                 ).strip().lower()
 
                 name_choice = True if name_choice == "y" else False if name_choice == "" or name_choice == "n" else name_choice
@@ -43,7 +43,7 @@ class Organizer:
 
                     while has_same or name is None: 
                         name = self.console.input(
-                            f"[{self.prompt_color}]>[/] "
+                            f"[bold {self.prompt_color}]?[/] "
                             f"[{self.muted_color}]directory name for[/] "
                             f"[bold {color}]{opt.replace('_', ' ')}[/] "
                             f"[{self.muted_color}]files:[/] "

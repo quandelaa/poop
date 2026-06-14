@@ -241,7 +241,7 @@ LEGAL_ARGS = set(EXTENSIONS.values())
 LEGAL_ARGS.add("all")
 
 COLORS = {
-    "header":    "bold #c8cdc8",
+    "header":    "#c8cdc8",
     "subheader": "#a6a89e",
     "text":      "#b8bcb8",
     "index":     "#8e8c84",

@@ -27,7 +27,7 @@ class Utility():
             path = Path(args.path).resolve()
         else:
             raw_path = console.input(
-                f"[{COLORS.get('prompt')}]>[/] [{COLORS.get('muted')}]path to directory:[/] "
+                f"[bold {COLORS.get('prompt')}]?[/] [{COLORS.get('muted')}]path to directory:[/] "
             ).strip()
 
             path = Path(raw_path).resolve()
@@ -37,12 +37,12 @@ class Utility():
             while not path.is_dir():
                 console.print(
                     f"[{COLORS.get('error')}]![/] "
-                    f"[{COLORS.get('text')}]{path}[/] "
+                    f"[bold {COLORS.get('text')}]{path}[/] "
                     f"[{COLORS.get('error')}]is not a valid directory[/]"
                 )
 
                 raw_path = console.input(
-                    f"[{COLORS.get('prompt')}]>[/] [{COLORS.get('muted')}]path to directory:[/] "
+                    f"[bold {COLORS.get('prompt')}]?[/] [{COLORS.get('muted')}]path to directory:[/] "
                 ).strip()
                 
                 path = Path(raw_path).resolve()
@@ -66,7 +66,7 @@ class Utility():
         console.print()
         while accept is not False and accept is not True:
             accept = console.input(
-                    f"[{COLORS.get('prompt')}]>[/] [{COLORS.get('muted')}]would you like to accept the changes (y/N to abort): [/] "
+                    f"[bold {COLORS.get('prompt')}]?[/] [{COLORS.get('muted')}]would you like to accept the changes [bold](y/N to abort): "
             ).strip().lower()
 
             accept = True if accept == "y" else False if accept == "n" or accept.isspace() or accept == "" else accept
