@@ -32,10 +32,10 @@ uv pip install git+https://github.com/quandelaa/poop.git
   poop -h | --help
 ```
 
-## features
-
-- not vibecoded
-- works (i think)
+## demo
+<div>
+    <img src="assets/demo.gif" alt="poop demo">
+</div>
 
 ## license
 
@@ -43,5 +43,4 @@ this project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-* my very first real project
-* 100% by quandela
+* made by `quandela`
