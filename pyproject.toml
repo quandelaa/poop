@@ -10,5 +10,8 @@ dependencies = [
 "rich"
 ]
 
+[tool.setuptools]
+packages  = ["poop_project"]
+
 [project.scripts]
 poop = "poop_project.main:main"
