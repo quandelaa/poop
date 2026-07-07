@@ -13,6 +13,8 @@ def parse():
 
     parser.add_argument("--document", help="organize supported document files into a directory named DIR in PATH", metavar="DIR")
     parser.add_argument("--spreadsheet", help="organize supported spreadsheet files into a directory named DIR in PATH", metavar="DIR")
+
+    parser.add_argument("--presentation", help="organize supported presentation files into a directory named DIR in PATH", metavar="DIR")
     
     parser.add_argument("--archive", help="organize supported archive files into a directory named DIR in PATH", metavar="DIR")
     parser.add_argument("--executable", help="organize supported executable files into a directory named DIR in PATH", metavar="DIR")
